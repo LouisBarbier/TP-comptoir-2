@@ -2,7 +2,7 @@
   <main>
     <div>
       <table>
-        <caption>Les produits</caption>
+        <caption>Les produits - {{data.page+1}}/{{max}}</caption>
         <tr>
           <th>Nom</th>
           <th>Prix</th>
@@ -39,7 +39,7 @@ let data = reactive({
 let max=0;
 
 function chargeProduits() {
-  doAjaxRequest(BACKEND + "/api/produits?sort=nom&page="+data.page+"&size=6")
+  doAjaxRequest(BACKEND + "/api/produits?sort=nom&page="+data.page+"&size=5")
       .then((json) => {
         max=json.page.totalPages;
         data.listeProduits = json._embedded.produits;
